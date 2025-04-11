@@ -1,0 +1,67 @@
+// JCL (Job Control Language) Cheatsheet
+
+// JOB Statement: Defines the start of a job
+// Syntax: //JOBNAME JOB (accounting_info),CLASS=class,MSGCLASS=msgclass,NOTIFY=user
+// Example:
+//MYJOB    JOB (12345),'MY JOB',CLASS=A,MSGCLASS=X,NOTIFY=&SYSUID
+
+// EXEC Statement: Executes a program or procedure
+// Syntax: //STEPNAME EXEC PGM=program_name
+// Example:
+//STEP1    EXEC PGM=IEFBR14
+
+// DD Statement: Defines data sets and I/O devices
+// Syntax: //DDNAME DD parameters
+// Example:
+//SYSUT1   DD DSN=MY.DATA.SET,DISP=(NEW,CATLG),UNIT=SYSDA,SPACE=(CYL,(1,1))
+
+// DISP Parameter: Specifies the status of the dataset
+// DISP=(status,normal_disposition,abnormal_disposition)
+// Status: NEW, OLD, SHR, MOD
+// Example:
+//DISP=(NEW,CATLG,DELETE)
+
+// SYSOUT: Directs output to a specific class
+// Syntax: //DDNAME DD SYSOUT=class
+// Example:
+//SYSOUT   DD SYSOUT=*
+
+// INCLUDE Statement: Includes a member from a library
+// Syntax: //INCLUDE MEMBER=member_name
+// Example:
+//INCLUDE  MEMBER=MYLIB
+
+// IF/THEN/ELSE/ENDIF: Conditional execution
+// Syntax:
+// // IF (condition) THEN
+// //   <statements>
+// // ELSE
+// //   <statements>
+// // ENDIF
+// Example:
+// // IF (RC = 0) THEN
+// //   EXEC PGM=MYPGM
+// // ENDIF
+
+// Comment: Use //* for comments
+// Example:
+//* This is a comment
+
+// PROC Statement: Defines a procedure
+// Syntax: //PROCNAME PROC
+// Example:
+//MYPROC   PROC
+//STEP1    EXEC PGM=IEFBR14
+//         PEND
+
+// CALLING A PROC:
+// Syntax: //STEPNAME EXEC PROC=proc_name
+// Example:
+//STEP1    EXEC PROC=MYPROC
+
+// Common Utilities:
+// IEFBR14: Dummy program
+// IEBCOPY: Dataset copy utility
+// IEBGENER: Dataset generation utility
+// IDCAMS: Access Method Services
+// SORT: Sorting utility
